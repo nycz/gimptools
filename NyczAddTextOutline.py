@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 from gimpfu import *
 
@@ -13,6 +13,7 @@ from gimpfu import *
 
 
 def add_text_outline(image, layer):
+    gimp.pdb.gimp_image_undo_group_start(image)
     layer_name = layer.name
     gimp.pdb.gimp_image_select_item(image, CHANNEL_OP_ADD, layer)
     if gimp.pdb.gimp_selection_is_empty(image):
@@ -25,6 +26,7 @@ def add_text_outline(image, layer):
     gimp.pdb.gimp_selection_none(image)
     final_layer = gimp.pdb.gimp_image_merge_down(image, layer, NORMAL_MODE)
     final_layer.name = layer_name
+    gimp.pdb.gimp_image_undo_group_end(image)
     return
 
 register(
