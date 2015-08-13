@@ -7,7 +7,7 @@ def merge_down_layers(image, layer, name):
     gimp.pdb.gimp_image_undo_group_start(image)
     # Make sure there is something to merge
     while len(image.layers) > 1:
-        for l in image.layers:
+        for l in image.layers[:-1]:
             if l.name.startswith(name):
                 gimp.pdb.gimp_image_merge_down(image, l, NORMAL_MODE)
                 break

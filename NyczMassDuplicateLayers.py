@@ -30,7 +30,7 @@ def mass_duplicate_layers(image, layer, pattern, offset, defaultend, lastlayer):
     newlayer.name = layer.name
     image.remove_layer(layer)
     if defaultend:
-        end = len(image.layers)
+        end = len(image.layers)-1
     else:
         end = image.layers.index(lastlayer)
     patternlist = parse_pattern(pattern, offset, end)
